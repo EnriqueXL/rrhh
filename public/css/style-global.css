@@ -1,0 +1,257 @@
+/* Reset y estilos básicos */
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* Tipografía */
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Layout */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Main Content */
+.main {
+    flex-grow: 1;
+    background-color: #E0E7EF; /* Azul claro */
+    transition: background-color 0.35s ease-in-out;
+}
+
+.container-fluid {
+    padding: 2rem;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 70px;
+    transition: width 0.3s ease;
+    background-color: #FFF; /* Azul muy claro */
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar.expand {
+    width: 250px;
+}
+
+#sidebar:not(.expand) {
+    width: 80px;
+}
+
+/* Transición para las etiquetas */
+#sidebar a.sidebar-link span {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#sidebar:not(.expand) a.sidebar-link span {
+    opacity: 0;
+    transition: opacity 0.3s ease, width 0s;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+} 
+
+#sidebar.expand a.sidebar-link span {
+    width: auto;
+    opacity: 1;
+}
+
+/* Transición para los íconos */
+#sidebar a.sidebar-link i {
+    transition: transform 0.3s ease;
+}
+
+#sidebar.expand a.sidebar-link i {
+    transform: scale(1);
+}
+
+#sidebar:not(.expand) a.sidebar-link i {
+    transform: scale(1.1);
+}
+
+
+#sidebar .label,
+#sidebar .sidebar-logo,
+#sidebar .sidebar-link span {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in-out;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+}
+
+#sidebar.expand .label,
+#sidebar.expand .sidebar-logo,
+#sidebar.expand .sidebar-link span {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Botón de colapso */
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 1rem 2rem;
+}
+
+.toggle-btn i {
+    font-size: 1rem;
+    color: #333333; /* Gris oscuro */
+}
+
+/* Sidebar Logo */
+.sidebar-logo a {
+    color: #333333; /* Gris oscuro */
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.sidebar-logo-img {
+    width: 7.5rem; 
+    height: auto; 
+    margin-top: 10px;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    padding: 2rem 0;
+    flex-grow: 1;
+}
+
+a.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1.625rem;
+    color: #333333; /* Gris oscuro */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-link i {
+    font-size: 1rem;
+    margin-right: 0.75rem;
+}
+
+#sidebar:not(.expand) .sidebar-link i {
+    margin-right: 0;
+}
+
+a.sidebar-link:hover {
+    background-color: #E0E7EF; /* Azul claro */
+    border-left-color: #3B7DDD; /* Azul medio */
+}
+
+/* Dropdown Flecha */
+.sidebar-link[data-bs-toggle="collapse"]::after {
+    content: "▾";
+    font-size: 1rem;
+    margin-left: auto;
+    color: #333333; /* Gris oscuro */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-link.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+/* Sidebar Dropdown */
+.sidebar-item {
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #F0F4F8; /* Azul muy claro */
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+    z-index: 1050;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+    z-index: 1050;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FFF; /* Blanco */
+    color: #333333; /* Gris oscuro */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra que da justo en el borde creando una linea divisora en el nav y el aside */
+}
+
+.navbar-brand i {
+    font-size: 1rem;
+    color: #333333; /* Gris oscuro */
+    margin-bottom: 1rem;
+}
+/* Paginación */
+.pagination {
+    color: #333333; /* Gris oscuro */
+}
+
+.pagination .page-item .page-link {
+    color: #333333; /* Gris oscuro */
+    font-size: small;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #3B7DDD; /* Azul medio */
+    border-color: #3B7DDD; /* Azul medio */
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #CCCCCC; /* Gris Claro */
+    border-color: #CCCCCC; /* Gris Claro */
+}
+
+/* BreadCrumb */
+
+.breadcrumb-now {
+    color: #333333; /* Gris oscuro */
+    /* border-bottom:solid 2px grey; */
+}
+
+/* Estilos para los enlaces de la barra de navegación */
+.navbar-brand {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #007bff; /* Cambia el color al pasar el ratón */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
